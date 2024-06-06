@@ -1,2 +1,4 @@
 db.sqlite3
 notes/__pycache__
+__pyache__
+*.pyc
