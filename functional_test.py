@@ -30,14 +30,13 @@ class NewVisitorTest(unittest.TestCase):
 
         #文本框输入'Buy flowers'
         inputbox.send_keys('Buy flowers')
-        self.fail('Finish the test')
         #按回车，页面更新
         #待办事项显示'1：Buy flowers'
         inputbox.send_keys(Keys.ENTER)
         time.sleep(1)
 
         table = self.browser.find_element(By.ID,'id_list_table')
-        rows = table.find_element(By.TAG_NAME,'tr')
+        rows = table.find_elements(By.TAG_NAME,'tr')
         self.assertIn('1：Buy flowers',[row.text for row in rows])
 
         self.fail("Finish the test!")
