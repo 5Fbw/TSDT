@@ -3,10 +3,11 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
 import time
 import unittest
+from django.test import LiveServerTestCase
 
 
 # driver = webdriver.Chrome(executable_path='D:\\python3.7.7\\chromedriver_win32\\chromedriver.exe')
-class NewVisitorTest(unittest.TestCase):
+class NewVisitorTest(LiveServerTestCase):
     def setUp(self):
         self.browser = webdriver.Chrome()
     def tearDown(self):
@@ -18,7 +19,7 @@ class NewVisitorTest(unittest.TestCase):
         self.assertIn(row_text, [row.text for row in rows])
 
     def test_can_start_a_list_and_retrive_it_later(self):
-        self.browser.get('http://localhost:8000')
+        self.browser.get(self.live_server_url)
         time.sleep(1)
 
         #检测标题和头部包含'To-Do'
@@ -48,6 +49,6 @@ class NewVisitorTest(unittest.TestCase):
         self.check_for_row_in_list_table("2：Give a gift to List")
         self.fail("Finish the test!")
 
-if __name__ == "__main__":
-    unittest.main()
+# if __name__ == "__main__":
+#     # unittest.main()
 
