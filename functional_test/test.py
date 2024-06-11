@@ -95,12 +95,12 @@ class NewVisitorTest(LiveServerTestCase):
         #王五获得唯一url
         wangwu_list_url = self.browser.current_url
         self.assertRegex(wangwu_list_url, '/lists/.+')
-        self.assertRegex(wangwu_list_url, zhangsan_list_url)
+        self.assertNotEqual(wangwu_list_url, zhangsan_list_url)
 
         #页面没有张三清单
         page_text = self.browser.find_element(By.TAG_NAME, 'body').text
         self.assertNotIn('Buy flowers', page_text)
-        self.assertNotIn('Buy milk', page_text)
+        self.assertIn('Buy milk', page_text)
 
 # if __name__ == "__main__":
 #     # unittest.main()
