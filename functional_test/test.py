@@ -1,3 +1,5 @@
+import os
+
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
@@ -12,6 +14,10 @@ MAX_WAIT = 10
 class NewVisitorTest(StaticLiveServerTestCase):
     def setUp(self):
         self.browser = webdriver.Chrome()
+        real_server = os.environ.get('REAL_SERVER')
+        print(real_server)
+        if real_server:
+            self.live_server_url = 'http://' + real_server
     def tearDown(self):
         self.browser.quit()
 
